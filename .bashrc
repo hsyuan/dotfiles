@@ -47,8 +47,31 @@ PROMPT_COMMAND=__prompt_command
 # CDPATH magic
 export CDPATH=.:$HOME/projects:$HOME/workplace:$HOME/workspace:$HOME/hacks:$HOME/vagrant
 
+# Path magic
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin
+
+# check for custom bin directory and add to path
+if [[ -d ~/bin ]]; then
+    export PATH=~/bin:$PATH
+fi
+if [[ -d ~/scripts ]]; then
+    export PATH=~/scripts:$PATH
+fi
+
 # export other environment variables
 export PAGER='less'
 export MANPAGER='less'
 export EDITOR='vim'
 
+export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
+export HISTSIZE=100000                   # big big history
+export HISTFILESIZE=100000               # big big history
+shopt -s histappend                      # append to history, don't overwrite it
+
+# Save and reload the history after each command finishes
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+function latest_log() {
+    LOG=$(ls $MASTER_DATA_DIRECTORY/pg_log/ | grep '^gpdb' | sort -t_ -k 2 -r | head -n 1)
+    echo -n $MASTER_DATA_DIRECTORY/pg_log/$LOG
+}
