@@ -36,3 +36,10 @@ sudo apt-get install -y python-pip
 # Other GPDB dependencies --with-perl --with-python --with-libxml
 sudo apt-get install -y libxml2-dev libperl-dev
 
+
+# Python dependencies
+sudo pip install lockfile 
+sudo pip install paramiko
+sudo pip install setuptools
+sudo pip install epydoc
+sudo pip install --pre psi
