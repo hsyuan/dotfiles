@@ -32,3 +32,7 @@ sudo apt-get install -y libcurl4-openssl-dev
 
 sudo apt-get install -y python-pip
 
+
+# Other GPDB dependencies --with-perl --with-python --with-libxml
+sudo apt-get install -y libxml2-dev libperl-dev
+
