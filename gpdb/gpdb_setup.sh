@@ -8,10 +8,10 @@ sudo apt-get install -y build-essential
 sudo apt-get install -y cmake
 
 # Download libraries
-git clone https://github.com/greenplum-db/gpdb
-git clone https://github.com/greenplum-db/gp-orca
-git clone https://github.com/greenplum-db/gpos
-git clone https://github.com/greenplum-db/gp-xerces
+git clone https://github.com/hardikar/gpdb
+git clone https://github.com/hardikar/gp-orca
+git clone https://github.com/hardikar/gpos
+git clone https://github.com/hardikar/gp-xerces
 
 
 # GPDB dependencies
