@@ -71,7 +71,16 @@ shopt -s histappend                      # append to history, don't overwrite it
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
+# Usage: less $(DATA_DIR=$MASTER_DATA_DIRECTORY latest_log)
 function latest_log() {
-    LOG=$(ls $MASTER_DATA_DIRECTORY/pg_log/ | grep '^gpdb' | sort -t_ -k 2 -r | head -n 1)
-    echo -n $MASTER_DATA_DIRECTORY/pg_log/$LOG
+    LOG=$(ls -t $DATA_DIR/pg_log/ | grep '^gpdb' | head -n 1)
+    echo -n $DATA_DIR/pg_log/$LOG
 }
+
+# Usage: lldb -c $(CORE_DIR=/cores latest_core)
+function latest_core() {
+    CORE=$(ls -t $CORE_DIR | head -n 1)
+    echo -n $CORE_DIR/$CORE
+}
+
+
