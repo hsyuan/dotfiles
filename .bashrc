@@ -83,4 +83,8 @@ function latest_core() {
     echo -n $CORE_DIR/$CORE
 }
 
+# Load local overrides
+if [[ -f ~/.local/.bashrc ]]; then
+    source ~/.local/.bashrc
+fi
 
