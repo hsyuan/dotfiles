@@ -6,11 +6,18 @@ sudo yum -y groupinstall "Development tools"
 sudo yum install -y screen htop vim tmux git emacs wget cmake3 ccache
 sudo yum install -y unzip postgresql
 sudo yum install -y zlib-devel curl-devel bzip2-devel python-devel readline-devel pam-devel
+# paramiko dependencies
+sudo yum install -y libffi-devel openssl-devel
 
 # install python packages needed for gpdemo/ management utils
 sudo yum install -y python-pip
 sudo pip install --upgrade pip
-sudo pip install psi lockfile paramiko setuptools epydoc psutil
+sudo pip install psi
+sudo pip install lockfile
+sudo pip install paramiko
+sudo pip install setuptools
+sudo pip install epydoc
+sudo pip install psutil
 
 # install packages needed for gpfdist
 sudo yum install -y libyaml-devel libyaml-devel apr-devel libevent-devel libxml2-devel
