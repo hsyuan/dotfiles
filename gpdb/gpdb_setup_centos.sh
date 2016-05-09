@@ -5,7 +5,7 @@ sudo yum install -y epel-release
 sudo yum -y groupinstall "Development tools"
 sudo yum install -y screen htop vim tmux git emacs wget cmake3 ccache
 sudo yum install -y unzip postgresql
-sudo yum install -y zlib-devel curl-devel bzip2-devel python-devel readline-devel pam-devel
+sudo yum install -y zlib-devel curl-devel bzip2-devel python-devel readline-devel pam-devel openldap-devel
 # paramiko dependencies
 sudo yum install -y libffi-devel openssl-devel
 
