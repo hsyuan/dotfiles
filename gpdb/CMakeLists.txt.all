@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.6)
+project(gpdb_all)
+
+add_subdirectory(gpdb)
+add_subdirectory(gporca)

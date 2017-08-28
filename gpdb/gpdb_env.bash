@@ -1,6 +1,9 @@
 ORCA_INSTALL_PATH=/usr/local/
 ORCA_PREFIX=gporca
 
+GPDB_WORKSPACE=$HOME/workspace
+SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 use_orca () {
 	local ver
   ver="$1"
@@ -23,3 +26,36 @@ _use_orca_complete()
   return 0
 }
 complete -o nospace -F _use_orca_complete use_orca
+
+
+make_gpdb_project()
+{
+  local projdir
+  projdir="$1"
+
+  if [[ -z "$projdir" ]]; then
+    echo "  ERROR: Usage $0 <project-dir>"
+    return 1
+  fi
+
+  if [[ -d "${GPDB_WORKSPACE}/$projdir" ]]; then
+    echo "  ERROR: Usage ${GPDB_WORKSPACE}/$projdir already exists!"
+    return 1
+  fi
+
+  mkdir -p "${GPDB_WORKSPACE}/$projdir"
+  pushd "${GPDB_WORKSPACE}/$projdir"
+
+  git clone git@github.com:hardikar/gpdb.git
+  git clone git@github.com:hardikar/gporca.git
+
+  git -C gpdb remote add upstream git@github.com:greenplum-db/gpdb.git
+  git -C gporca remote add upstream git@github.com:greenplum-db/gporca.git
+
+  cp ${SOURCE_DIR}/CMakeLists.txt.all ./CMakeLists.txt
+  cp ${SOURCE_DIR}/CMakeLists.txt.gpdb gpdb/CMakeLists.txt
+
+  cmake -G Xcode .
+
+  popd
+}
